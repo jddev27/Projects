@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circles</title>
+	<link rel="stylesheet" type="text/css" href="circle.css">
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+		
+	for(var i = 100; i<2000; i+=200)
+		{
+			for(var j = 100; j<2000; j+=200)
+			{
+					// Create a decagon shaped path 
+				var decagon = new Path.RegularPolygon(new Point(i, j), 6, 30);
+				decagon.fillColor = 'red';
+				decagon.selected = true;
+
+			}
+		}
+		
+
+	</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
