@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Ajax example</h1>
+
+    <div id="container">
+      <div id="result">
+        <ul id="colors"></ul>
+        <h3>Add a new post</h3>
+        <form
+          id="addPostForm"
+          action="https://jsonplaceholder.typicode.com/posts"
+        >
+          <label for="title">Add title</label>
+          <input type="text" name="" id="title" /><br /><br />
+          <label for="bodyTex">Add post</label>
+          <textarea id="bodyTex"></textarea><br /><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <script>
+      $(function() {
+        //UNCOMMENT TO SEE IT WORKING
+        //.load() - is used to load data from file into a selected element
+        //   $("#result").load("newPage.html", function(
+        //     responseTxt,
+        //     statusTxt,
+        //     xhr
+        //   ) {
+        //     if (statusTxt === "success")
+        //       console.log("External content loaded successfully!");
+        //     if (statusTxt === "error")
+        //       console.log("Error: " + xhr.status + ": " + xhr.statusText);
+        //   });
+        //.get() - It is used to get data from an specific resource using an http request
+        //   $.get("newPage.html", function(data) {
+        //     $("#result").html(data);
+        //   });
+        //getJSON() - it is used to get data from a json file using an http request
+        // $.getJSON("colors.json", function(data) {
+        //   $.each(data, function(index, colors) {
+        //     $.each(colors, function(index, color) {
+        //       $("ul#colors").append("<li>" + color.color + "</li>");
+        //     });
+        //   });
+        // });
+        //ajax() - it used to performan asynchronus http request.
+        // $.ajax({
+        //   method: "GET",
+        //   url: "https://jsonplaceholder.typicode.com/posts",
+        //   dataType: "json"
+        // }).done(function(data) {
+        //   $.map(data, function(post, index) {
+        //     $("#result").append(
+        //       "<h3>" + post.title + "</h3>" + "<p>" + post.body + "</p>"
+        //     );
+        //   });
+        // });
+
+        //POST method - use to make a post request
+        $("addPostForm").submit(function(e) {
+          e.preventDefault();
+
+          const title = $("#title").val();
+          const body = $("#bodyTex").val();
+          const url = $(this).attr("action");
+
+          $.post(url, { title: title, body: body }).done(function(data) {
+            console.log("post has been saved");
+            console.log(data);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
